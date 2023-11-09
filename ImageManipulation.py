@@ -9,6 +9,7 @@ zoom_factor = 1
 prev_zoom_factor = 1
 
 # Set canvas size
+image = None
 canvas_height = 540
 canvas_width = 960
 
@@ -140,21 +141,21 @@ def update_image():
         canvas.create_image(pan_x, pan_y, image=photo, anchor=tk.NW)
         canvas.image = photo
 
-        # zooming and panning lines
-        old_lines = drawn_lines.copy()
-        drawn_lines.clear()
-        for line in old_lines:
-            coords = canvas.coords(line)
-            line_color = canvas.itemcget(line, 'fill')
-            x1 = (coords[0] - pan_x) * (zoom_factor / prev_zoom_factor) + pan_x + (pan_x - prev_pan_x)
-            y1 = (coords[1] - pan_y) * (zoom_factor / prev_zoom_factor) + pan_y + (pan_y - prev_pan_y)
-            x2 = (coords[2] - pan_x) * (zoom_factor / prev_zoom_factor) + pan_x + (pan_x - prev_pan_x)
-            y2 = (coords[3] - pan_y) * (zoom_factor / prev_zoom_factor) + pan_y + (pan_y - prev_pan_y)
-            line = canvas.create_line(x1, y1, x2, y2, fill=line_color, width=2 * zoom_factor, capstyle=tk.ROUND, smooth=tk.TRUE, splinesteps=36)
-            drawn_lines.append(line)
-        prev_zoom_factor = zoom_factor
-        for line in old_lines:
-            canvas.delete(line)
+    # zooming and panning lines
+    old_lines = drawn_lines.copy()
+    drawn_lines.clear()
+    for line in old_lines:
+        coords = canvas.coords(line)
+        line_color = canvas.itemcget(line, 'fill')
+        x1 = (coords[0] - pan_x) * (zoom_factor / prev_zoom_factor) + pan_x + (pan_x - prev_pan_x)
+        y1 = (coords[1] - pan_y) * (zoom_factor / prev_zoom_factor) + pan_y + (pan_y - prev_pan_y)
+        x2 = (coords[2] - pan_x) * (zoom_factor / prev_zoom_factor) + pan_x + (pan_x - prev_pan_x)
+        y2 = (coords[3] - pan_y) * (zoom_factor / prev_zoom_factor) + pan_y + (pan_y - prev_pan_y)
+        line = canvas.create_line(x1, y1, x2, y2, fill=line_color, width=2 * zoom_factor, capstyle=tk.ROUND, smooth=tk.TRUE, splinesteps=36)
+        drawn_lines.append(line)
+    prev_zoom_factor = zoom_factor
+    for line in old_lines:
+        canvas.delete(line)
 
 
 # Create a Tkinter window
