@@ -69,12 +69,11 @@ def stop_draw(event):
 def draw(event):
     """Function to draw connected lines on the canvas"""
     global prev_x, prev_y
-    x, y = event.x, event.y
+    x = ((event.x-pan_x)/zoom_factor)
+    y = ((event.y-pan_y)/zoom_factor)
     if prev_x is not None and drawing is True:
         draw.line([prev_x, prev_y, x, y], fill=current_color, width=2)
-        photo = ImageTk.PhotoImage(image)
-        canvas.create_image(0, 0, image=photo, anchor=tk.NW)
-        canvas.image = photo  # Keep a reference to the image to prevent it from being garbage collected
+        update_image()
     prev_x, prev_y = x, y
 
 def eyedropper(event):
