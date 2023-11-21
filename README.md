@@ -16,4 +16,4 @@ response = client_socket.recv(1024)
 
 UML Sequence Diagram:
 
-![image](https://github.com/MasoJose/ImageManipulation/assets/114639462/aaa37789-9b7d-4899-bb27-f6590bd9a9b1)
+![image](https://github.com/MasoJose/ImageManipulation/assets/114639462/f38fae11-dd5a-45b0-bf69-3e6a8be3235d)
