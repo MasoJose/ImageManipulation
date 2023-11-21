@@ -13,3 +13,4 @@ recieve the data by specifying th emax number of bytes to recieve. eg
 response = client_socket.recv(1024)
 
 UML Sequence Diagram:
+![image](https://github.com/MasoJose/ImageManipulation/assets/114639462/aaa37789-9b7d-4899-bb27-f6590bd9a9b1)
